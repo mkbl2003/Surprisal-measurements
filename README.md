@@ -1,8 +1,17 @@
 # Surprisal-measurements
 This repository contains the surprisal measurements for a number of .wav files, recorded for the ongoing project 'Comprehension under Pressure', conducted by Petter Kallioinen and others at Stockholm University. Moreover, this repository contains the transcriptions of the .wav-files, a textfile containing basic statistics on the surprisal data for every .wav-file and Python scripts to sentence tokenize the transcriptions, to calculate the surprisal values for every word on a sentence level and to convert the surprisal values into a format, in which one can create histograms of the surprisal distributions in the data. The surprisal values were calculated using the LLM _google/gemma-3-1b-pt_.
 ## Usage
+Calculate the surprisal values
 ```python
-åsa_wikforss_1_surprisals = surprisal_adjuster2.sp_words_with_scores(surprisal_adjuster2.read_file('åsa_wikforss_surprisalvärden.txt')) # åsa_wikforss.wav contains 1GB data, it has therefore been separated into three parts
+import stimulus_generator
+ghazaleh = stimulus_generator.read_file('ghazaleh.txt')
+import surprisal_calculator
+surprisal_calculator.main('google/gemma-3-1b-pt', ghazaleh)
+```
+Convert the surprisal values into a format, in which it is possible to create histograms
+```python
+import surprisal_adjuster
+åsa_wikforss_1_surprisals = surprisal_adjuster.sp_words_with_scores(surprisal_adjuster.read_file('åsa_wikforss_surprisalvärden.txt')) # åsa_wikforss.wav contains 1GB data, it has therefore been separated into three parts
 
 data = []
 
